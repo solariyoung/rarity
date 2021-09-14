@@ -29,20 +29,20 @@ async function main() {
   if (process.argv[3] == 'approve') {
       
     let ids = process.argv[4].split(",")
-    console.log(ids)
     
     let toAddress = process.argv[5]
+    if (toAddress.startsWith('0x')) toAddress = toAddress.slice(2)
     
     for (i=0;i < ids.length;i++){
-        let method_sig = web3.eth.abi.encodeFunctionSignature('appprove(address,uint256)')
+        let method_sig = web3.eth.abi.encodeFunctionSignature('approve(address,uint256)')
         let data = method_sig + utils.add_pre_zero(toAddress.toString(16, 'hex')) 
-                                + utils.add_pre_zero(ids[i].toString(16, 'hex'))
+                                + utils.add_pre_zero(parseInt(ids[i]).toString(16, 'hex'))
         console.log(ids[i])
         console.log(data)
         
         await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_contract_address)
         
-        await(3000)
+        await(5000)
     }
    
     
