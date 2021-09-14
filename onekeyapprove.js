@@ -27,19 +27,23 @@ async function main() {
   if (private_key.startsWith('0x')) private_key = private_key.slice(2)
   
   if (process.argv[3] == 'approve') {
-    let ids = parseInt(process.argv[4])
-    let summoners = ids.split(",")
+      
+    let ids = process.argv[4].split(",")
     console.log(summoners)
-    return
     
-    if (isNaN(class_id) || class_id < 1 || class_id > 11) {
-      console.log('bad class_id')
-      return
+    let toAddress = process.argv[5]
+    
+    for (i=0;i < ids.length;i++){
+        let method_sig = web3.eth.abi.encodeFunctionSignature('appprove(address,uint256)')
+        let data = method_sig + utils.add_pre_zero(toAddress.toString(16, 'hex')) 
+                                + utils.add_pre_zero(ids[i].toString(16, 'hex'))
+        console.log(ids[i])
+        console.log(data)
     }
+   
 
     console.log('- summon')
-    let method_sig = web3.eth.abi.encodeFunctionSignature('summon(uint256)')
-    let data = method_sig + utils.add_pre_zero(class_id.toString(16, 'hex'))
+    
     await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_contract_address)
 
   } 
