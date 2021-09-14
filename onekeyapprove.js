@@ -29,7 +29,7 @@ async function main() {
   if (process.argv[3] == 'approve') {
       
     let ids = process.argv[4].split(",")
-    console.log(summoners)
+    console.log(ids)
     
     let toAddress = process.argv[5]
     
@@ -39,12 +39,14 @@ async function main() {
                                 + utils.add_pre_zero(ids[i].toString(16, 'hex'))
         console.log(ids[i])
         console.log(data)
+        
+        await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_contract_address)
+        
+        await(3000)
     }
    
-
-    console.log('- summon')
     
-    await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_contract_address)
+   
 
   } 
 
