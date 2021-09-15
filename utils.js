@@ -104,7 +104,6 @@ function send_signed_transaction2(web3, signed_tx) {
 		});
 		tran.on('transactionHash', hash => {
 			console.log('hash:' + hash);
-			     resovle(false);
 		});
 		//tran.on('receipt', receipt => {
 		//	console.log('receipt:' + receipt);
