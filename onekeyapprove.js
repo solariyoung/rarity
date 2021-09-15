@@ -40,7 +40,7 @@ async function main() {
         console.log(ids[i])
         console.log(data)
         
-        await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_contract_address)
+        await utils.sign_and_send_transaction2(web3, private_key, data, utils.Rarity_contract_address)
         
         await(5000)
     }
