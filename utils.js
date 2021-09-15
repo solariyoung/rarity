@@ -89,6 +89,54 @@ function send_signed_transaction(web3, signed_tx) {
 	}
 }
 
+function send_signed_transaction2(web3, signed_tx) {
+	return new Promise((resovle,reject)=>{
+  try
+	{
+		var tran = web3.eth.sendSignedTransaction('0x' + signed_tx);
+		console.log('transaction sent, wait for response.')
+		tran.on('confirmation', (confirmationNumber, receipt) => {
+			console.log('confirmation: ' + confirmationNumber);
+      if (confirmationNumber >= confirmation_number) {
+       // process.exit(0)
+	      resovle(true);
+      }
+		});
+		tran.on('transactionHash', hash => {
+			console.log('hash:' + hash);
+			     resovle(false);
+		});
+		//tran.on('receipt', receipt => {
+		//	console.log('receipt:' + receipt);
+		//	return
+		//});
+		tran.on('error', (err)=>{
+			console.log(err)
+			return
+		});
+	} 
+	catch (err)
+	{
+		console.log('Exception occured when waiting a response.')	
+	}
+		});
+}
+
+async function sign_and_send_transaction2(web3, private_key, data, contract_address) {
+return new Promise((resovle,reject)=>{
+  let account = web3.eth.accounts.privateKeyToAccount(private_key)
+  let from_ = account.address
+  console.log('your account: ' + from_)
+  
+  let nonce = await web3.eth.getTransactionCount(from_)
+  console.log('nonce: ' + nonce)
+
+  let signed_tx = sign_eth_tx(private_key, nonce, from_, data, contract_address)
+let ret = await send_signed_transaction2(web3, signed_tx);
+	resovle(true);
+});
+}
+
 async function sign_and_send_transaction(web3, private_key, data, contract_address) {
 
   let account = web3.eth.accounts.privateKeyToAccount(private_key)
