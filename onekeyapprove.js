@@ -42,7 +42,7 @@ async function main() {
         
         await utils.sign_and_send_transaction2(web3, private_key, data, utils.Rarity_contract_address)
         
-        await(5000)
+        await wait(5000)
     }
    
     
