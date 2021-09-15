@@ -96,11 +96,12 @@ function send_signed_transaction2(web3, signed_tx) {
 		var tran = web3.eth.sendSignedTransaction('0x' + signed_tx);
 		console.log('transaction sent, wait for response.')
 		tran.on('confirmation', (confirmationNumber, receipt) => {
-			console.log('confirmation: ' + confirmationNumber);
-      if (confirmationNumber >= confirmation_number) {
+			
+      if (confirmationNumber <= confirmation_number) {
        // process.exit(0)
+	      console.log('confirmation: ' + confirmationNumber);
+      }else{
 	      resovle(true);
-	      tran.off();
       }
 		});
 		tran.on('transactionHash', hash => {
