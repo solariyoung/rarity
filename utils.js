@@ -168,6 +168,7 @@ function read_from_file(fn) {
 module.exports = {
   add_pre_zero,
   sign_and_send_transaction,
+	sign_and_send_transaction2,
   save_svg,  
   read_from_file,
 
