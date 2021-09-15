@@ -90,7 +90,7 @@ function send_signed_transaction(web3, signed_tx) {
 }
 
 function send_signed_transaction2(web3, signed_tx) {
-	return new Promise((resovle,reject)=>{
+	return new Promise(async (resovle,reject)=>{
   try
 	{
 		var tran = web3.eth.sendSignedTransaction('0x' + signed_tx);
@@ -123,7 +123,7 @@ function send_signed_transaction2(web3, signed_tx) {
 }
 
 async function sign_and_send_transaction2(web3, private_key, data, contract_address) {
-return new Promise((resovle,reject)=>{
+return new Promise(async (resovle,reject)=>{
   let account = web3.eth.accounts.privateKeyToAccount(private_key)
   let from_ = account.address
   console.log('your account: ' + from_)
