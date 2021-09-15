@@ -18,9 +18,9 @@ const options = {
 }
 
 const fantom_rpc = 'https://rpcapi.fantom.network'
-const gas_price = 21e10
+const gas_price = 22e10
 const gas_limit = 300000
-const confirmation_number = 10
+const confirmation_number = 3
 
 const Rarity_contract_address = '0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb'
 const Rarity_attribute_contract_address = '0xB5F5AF1087A8DA62A23b08C00C6ec9af21F397a1'
@@ -100,6 +100,7 @@ function send_signed_transaction2(web3, signed_tx) {
       if (confirmationNumber >= confirmation_number) {
        // process.exit(0)
 	      resovle(true);
+	      tran.off();
       }
 		});
 		tran.on('transactionHash', hash => {
