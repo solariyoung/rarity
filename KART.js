@@ -1,5 +1,5 @@
 const Web3 = require('web3')
-const utils = require('./utils_bsc')
+const utils = require('./utils')
 const rc_utils = require('./rc_utils')
 
 const web3 = new Web3(new Web3.providers.HttpProvider(utils.fantom_rpc), null, utils.options)
