@@ -16,7 +16,7 @@ async function main() {
 
 
   let private_key = process.argv[2]
-  if (private_key.startsWith('0x')) private_key = private_key.slice(2)
+  //if (private_key.startsWith('0x')) private_key = private_key.slice(2)
 
     
     //let toAddress = process.argv[5]
