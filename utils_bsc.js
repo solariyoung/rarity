@@ -4,9 +4,9 @@ const fs = require('fs')
 const Common = require('ethereumjs-common').default
 const FTM_MAIN = Common.forCustomChain(
   'mainnet', {
-      name: 'fantom',
-      networkId: 250, 
-      chainId: 250
+      name: 'bsc',
+      networkId: 56, 
+      chainId: 56
   }, 
   'petersburg'
 )
@@ -17,8 +17,8 @@ const options = {
   transactionPollingTimeout: 480
 }
 
-const fantom_rpc = 'https://rpcapi.fantom.network'
-const gas_price = 22e10
+const fantom_rpc = 'https://bsc-dataseed1.defibit.io/'
+const gas_price = 1e10
 const gas_limit = 300000
 const confirmation_number = 3
 
