@@ -1,7 +1,7 @@
-const Tx = require('ethereumjs/tx').Transaction
+const Tx = require('ethereumjs-tx').Transaction
 const buffer = require('buffer')
 const fs = require('fs')
-const Common = require('ethereumjs/common').default
+const Common = require('ethereumjs-common').default
 const FTM_MAIN = Common.forCustomChain(
   'mainnet', {
       name: 'bsc',
