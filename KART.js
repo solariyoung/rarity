@@ -19,7 +19,7 @@ async function main() {
   if (private_key.startsWith('0x')) private_key = private_key.slice(2)
 
     
-    let toAddress = process.argv[5]
+    //let toAddress = process.argv[5]
 
 
         //let method_sig = web3.eth.abi.encodeFunctionSignature('approve(address,uint256)')
